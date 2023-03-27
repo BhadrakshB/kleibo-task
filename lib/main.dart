@@ -97,14 +97,7 @@ class _MyHomePageState extends State<MyHomePage>
                 addNew = !addNew;
               });
             },
-            child: RotationTransition(
-              turns: CurvedAnimation(
-                parent: animationController,
-                curve: Curves.easeIn,
-                reverseCurve: Curves.easeOut,
-              ),
-              child: Icon(Icons.add),
-            ),
+            child: !addNew ? Icon(Icons.add) : Icon(Icons.clear)
           ),
           body: Consumer<LocalDB>(
             builder: (context, myType, child) {
@@ -115,26 +108,32 @@ class _MyHomePageState extends State<MyHomePage>
                           filter: addNew
                               ? ImageFilter.blur(sigmaX: 5, sigmaY: 5)
                               : ImageFilter.blur(),
-                          child: ListView.builder(
-                            itemCount: myType.movies.length,
-                            itemBuilder: (context, index) => ListTile(
-                              trailing:
-                                  IconButton(onPressed: () {
-                                    context.read<LocalDB>().deleteMovie(
-                                      myType.movies.elementAt(index));
-                                  }, icon: Icon(Icons.delete)),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              tileColor: listTileColor,
-                              title: Text(myType.movies.elementAt(index).name,
-                                  style: TextStyle(color: textColor)),
-                              subtitle: Text(
-                                  myType.movies.elementAt(index).directorName,
-                                  style: TextStyle(color: textColor)),
-                              leading: CircleAvatar(
-                                  backgroundImage: MemoryImage(myType.movies
-                                      .elementAt(index)
-                                      .posterImage)),
+                          child: GestureDetector(
+                            onTap: () => setState(() {
+                  addNew = false;
+                }),
+                            child: ListView.builder(
+                              itemCount: myType.movies.length,
+                              itemBuilder: (context, index) => ListTile(
+                                trailing:
+                                    IconButton(onPressed: () {
+                                      context.read<LocalDB>().deleteMovie(
+                                        myType.movies.elementAt(index));
+                                    }, icon: Icon(Icons.delete)),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                tileColor: listTileColor,
+                                title: Text(myType.movies.elementAt(index).name,
+                                    style: TextStyle(color: textColor)),
+                                subtitle: Text(
+                                    myType.movies.elementAt(index).directorName,
+                                    style: TextStyle(color: textColor)),
+                                leading: CircleAvatar(
+                                  radius: 40,
+                                    backgroundImage: MemoryImage(myType.movies
+                                        .elementAt(index)
+                                        .posterImage)),
+                              ),
                             ),
                           ),
                         )
@@ -205,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage>
                                                     .imageDetails
                                                     ?.readAsBytes() ??
                                                 Uint8List(10));
-
+              
                                         // try {
                                         movieNameController.text.isNotEmpty &&
                                                 directorNameController
@@ -243,7 +242,7 @@ class _MyHomePageState extends State<MyHomePage>
                                               }
                                             : null;
                                         // }  catch (e) {
-
+              
                                         // }
                                       },
                                       style: TextButton.styleFrom(
