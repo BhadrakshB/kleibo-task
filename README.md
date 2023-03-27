@@ -1,16 +1,24 @@
-# interview_task
+# Movie List App
 
-A new Flutter project.
+This is a simple aesthetic app that allows users to add, delete, and list movies they have watched. The app features an infinite scrollable listview that displays all the movies that a user has added to their list.
 
-## Getting Started
+#Features
+ - Infinite scrollable listview
+ - Add new movies via a form (Name, Director, and a poster image of the movie)
+ - Delete movies from the list
+ - Data stored in local database using Hive.
+ - Interactive and responsive UI
 
-This project is a starting point for a Flutter application.
+#Technologies Used
+Flutter
+Hive (local database)
 
-A few resources to get you started if this is your first Flutter project:
+# Getting Started
+To use this app, simply clone the repository, install the necessary dependencies and run the app on your device or emulator.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# Future Improvements
+ - Implement Firebase authentication to allow only logged-in users to add, view, and delete movies
+ - Add animations for navigations and saving actions
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Credits
+This app was created by Bhadraksh Bhargava as a project for Kleiba.
